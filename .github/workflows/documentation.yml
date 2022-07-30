@@ -13,6 +13,7 @@ jobs:
           pip install sphinx sphinx_rtd_theme
           pip install sphinx_click
           pip install myst-parser
+          pip install furo
       - name: Sphinx build
         run: |
           sphinx-build docs _build
