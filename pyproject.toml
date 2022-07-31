@@ -16,6 +16,7 @@ dependencies = [
     "Sphinx",
     "myst-parser",
     "sphinxcontrib-bibtex",
+    "nbsphinx",
 ]
 
 
