@@ -1,5 +1,8 @@
 ```{include} ../README.md
----
-end-before: <!-- github-only -->
----
+```
+
+```{include} usage.md
+```
+
+```{include} license.md
 ```
