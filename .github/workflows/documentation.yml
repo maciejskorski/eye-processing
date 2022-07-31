@@ -1,6 +1,6 @@
 # following https://coderefinery.github.io/documentation/gh_workflow/#exercise-deploy-sphinx-documentation-to-github-pages
 
-name: Docs
+name: Deploy Docs
 on: [push, pull_request]
 jobs:
   docs:
