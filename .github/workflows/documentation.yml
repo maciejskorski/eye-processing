@@ -10,10 +10,10 @@ jobs:
       - uses: actions/setup-python@v2
       - name: Install dependencies
         run: |
-          pip install sphinx sphinx_rtd_theme
-          pip install sphinx_click
+          pip install sphinx
+          # pip install sphinx_click
           pip install myst-parser
-          pip install furo
+          # pip install furo
       - name: Sphinx build
         run: |
           sphinx-build docs _build
