@@ -1,6 +1,3 @@
-```{include} ../README.md
-```
-
 ```{include} usage.md
 ```
 
