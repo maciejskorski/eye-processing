@@ -20,6 +20,8 @@ extensions = [
     #"sphinx.ext.napoleon",
     #"sphinx_click",
     "myst_parser",
+    "sphinxcontrib.bibtex"
 ]
+bibtex_bibfiles = ['citations.bib']
 #autodoc_typehints = "description"
 #html_theme = "furo"
