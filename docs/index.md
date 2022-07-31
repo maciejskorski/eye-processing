@@ -7,7 +7,6 @@
 ```{include} license.md
 ```
 
-
 # References
 ```{bibliography}
 :style: unsrt
