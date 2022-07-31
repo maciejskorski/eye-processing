@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools","wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "eye-processing"
+version = "0.0.1"
+description = "Eye Processing"
+authors = [{name="Maciej Skorski",email="maciej.skorski@gmail.com"}]
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+]
+dependencies = [
+    "Sphinx",
+    "myst-parser",
+    "sphinxcontrib-bibtex",
+]
+
+
+[project.urls]
+homepage = "https://github.com/maciejskorski/eye_processing"
+repository = "https://github.com/maciejskorski/eye_processing"
+documentation = "https://maciejskorski.github.io/eye-processing/"
