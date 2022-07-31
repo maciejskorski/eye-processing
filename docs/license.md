@@ -2,6 +2,6 @@
 
 ```{literalinclude} ../LICENSE
 ---
-language: none
+lines: 1-15
 ---
 ```
