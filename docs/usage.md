@@ -1,5 +1,6 @@
 # Usage
 
 ```{eval-rst}
-.. python:: import
+.. ..code-block:: python
+    from eye_processing import *
 ```
