@@ -4,6 +4,8 @@ end-before: <!-- github-only -->
 ---
 ```
 
+$1+2$
+
 [license]: license
 [command-line reference]: usage
 
