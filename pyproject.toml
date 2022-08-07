@@ -15,6 +15,7 @@ classifiers = [
 dependencies = [
     "Sphinx",
     "myst-parser",
+    "myst-nb",
     "sphinxcontrib-bibtex",
     "nbsphinx",
 ]

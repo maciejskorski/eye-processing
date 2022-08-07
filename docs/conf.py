@@ -19,8 +19,9 @@ extensions = [
     #"sphinx.ext.autodoc",
     #"sphinx.ext.napoleon",
     #"sphinx_click",
-    "myst_parser",
-    "sphinxcontrib.bibtex"
+    #"myst_parser",
+    "myst_nb",
+    "sphinxcontrib.bibtex",
 ]
 bibtex_bibfiles = ['citations.bib']
 #autodoc_typehints = "description"
