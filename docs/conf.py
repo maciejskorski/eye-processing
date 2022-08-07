@@ -24,6 +24,12 @@ extensions = [
     "sphinxcontrib.bibtex",
 ]
 bibtex_bibfiles = ['citations.bib']
-html_theme = "sphinx_rtd_theme"
+
+html_theme = "sphinx_book_theme"
+html_theme_options = {
+    "repository_url": "https://github.com/maciejskorski/eye-processing/",
+    "repository_branch": "dev",
+    "path_to_docs": "docs",
+}
 
 nb_execution_mode = "off"
