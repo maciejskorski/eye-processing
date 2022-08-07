@@ -30,6 +30,9 @@ html_theme_options = {
     "repository_url": "https://github.com/maciejskorski/eye-processing/",
     "repository_branch": "dev",
     "path_to_docs": "docs",
+    "launch_buttons": {
+        "colab_url": "https://colab.research.google.com/"
+    },
 }
 
 nb_execution_mode = "off"
