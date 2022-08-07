@@ -4,6 +4,9 @@
 ```{include} usage.md
 ```
 
+```{include} preprocessing.md
+```
+
 ```{include} license.md
 ```
 
