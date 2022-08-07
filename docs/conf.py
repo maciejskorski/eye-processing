@@ -31,7 +31,8 @@ html_theme_options = {
     "repository_branch": "dev",
     "path_to_docs": "docs",
     "launch_buttons": {
-        "colab_url": "https://colab.research.google.com/"
+        "colab_url": "https://colab.research.google.com/",
+        "binderhub_url": "https://https://mybinder.org/"
     },
 }
 
