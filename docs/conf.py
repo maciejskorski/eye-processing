@@ -26,3 +26,5 @@ extensions = [
 bibtex_bibfiles = ['citations.bib']
 #autodoc_typehints = "description"
 #html_theme = "furo"
+
+nb_execution_mode = "off"

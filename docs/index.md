@@ -1,12 +1,11 @@
+```{include} about.md
+```
+
 ```{toctree}
 ---
 maxdepth: 2
-caption: Contents:
 ---
 notebooks/tutorial
-```
-
-```{include} about.md
 ```
 
 ```{include} usage.md
