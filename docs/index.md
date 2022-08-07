@@ -7,11 +7,10 @@
 maxdepth: 2
 ---
 Parse Eye Tracker Data <notebooks/tutorial_parse_eyelink.ipynb>
-usage
-license
+License <license.md>
 ```
 
-# References
+# Bibliography
 ```{bibliography}
 :style: unsrt
 ```
