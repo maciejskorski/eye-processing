@@ -17,7 +17,8 @@ dependencies = [
     "myst-parser",
     "myst-nb",
     "sphinxcontrib-bibtex",
-    "sphinx-book-theme"
+    "sphinx-book-theme",
+    "sphinx_rtd_theme",
 ]
 
 

@@ -24,7 +24,6 @@ extensions = [
     "sphinxcontrib.bibtex",
 ]
 bibtex_bibfiles = ['citations.bib']
-#autodoc_typehints = "description"
-html_theme = "sphinx_book_theme"
+html_theme = "sphinx_rtd_theme"
 
 nb_execution_mode = "off"
