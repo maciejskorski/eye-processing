@@ -5,7 +5,6 @@
 ```{toctree}
 ---
 maxdepth: 2
-caption: Content
 ---
 Parse Eye Tracker Data <notebooks/tutorial_parse_eyelink.ipynb>
 usage
