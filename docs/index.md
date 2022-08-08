@@ -12,5 +12,4 @@ License <license.md>
 
 # Bibliography
 ```{bibliography}
-:style: unsrt
 ```
