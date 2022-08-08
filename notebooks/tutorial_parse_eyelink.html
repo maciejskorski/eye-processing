@@ -1,0 +1,686 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Analyze Eye Tracker Data &#8212; Eye Processing  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="License" href="../license.html" />
+    <link rel="prev" title="About" href="../index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Eye Processing  documentation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Analyze Eye Tracker Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../license.html">
+   License
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/maciejskorski/eye-processing/dev?urlpath=tree/docs/notebooks/tutorial_parse_eyelink.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/maciejskorski/eye-processing/blob/dev/docs/notebooks/tutorial_parse_eyelink.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/notebooks/tutorial_parse_eyelink.ipynb.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Analyze Eye Tracker Data
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preliminaries">
+     Preliminaries
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parse-into-tabular-format">
+     Parse into Tabular Format
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualize">
+     Visualize
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Analyze Eye Tracker Data</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Analyze Eye Tracker Data
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preliminaries">
+     Preliminaries
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parse-into-tabular-format">
+     Parse into Tabular Format
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualize">
+     Visualize
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="analyze-eye-tracker-data">
+<h1>Analyze Eye Tracker Data<a class="headerlink" href="#analyze-eye-tracker-data" title="Permalink to this headline">#</a></h1>
+<section id="preliminaries">
+<h2>Preliminaries<a class="headerlink" href="#preliminaries" title="Permalink to this headline">#</a></h2>
+<p>For parsing and converting the pupilometry data, we will use the recent fork of <code class="docutils literal notranslate"><span class="pre">python_eyelinkparser</span></code> module.
+The dataset comes from <span id="id1">[<a class="reference internal" href="#id5" title="Sebastiaan Mathôt. Pupillometry: Psychology, Physiology, and Function. Journal of Cognition, 1(1):16, February 2018. URL: http://www.journalofcognition.org/articles/10.5334/joc.18/ (visited on 2022-07-30), doi:10.5334/joc.18.">Mat18</a>]</span> and represents the eye response to a working-memory task on digits, following the classical work <span id="id2">[<a class="reference internal" href="#id6" title="Daniel Kahneman and Jackson Beatty. Pupil Diameter and Load on Memory. Science, 154(3756):1583–1585, December 1966. URL: https://www.science.org/doi/10.1126/science.154.3756.1583 (visited on 2022-08-07), doi:10.1126/science.154.3756.1583.">KB66</a>]</span>. The original data was captured using <code class="docutils literal notranslate"><span class="pre">EyeLink</span> <span class="pre">1000</span></code> by <code class="docutils literal notranslate"><span class="pre">SR</span> <span class="pre">Research</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># install the fixed repo (fork)</span>
+<span class="o">%</span><span class="k">pip</span> install --upgrade setuptools
+<span class="o">%</span><span class="k">pip</span> install git+https://github.com/maciejskorski/python-eyelinkparser.git 
+<span class="c1"># download and convert the data</span>
+<span class="kn">import</span> <span class="nn">pkg_resources</span>
+<span class="n">edf2asc_path</span> <span class="o">=</span> <span class="n">pkg_resources</span><span class="o">.</span><span class="n">resource_filename</span><span class="p">(</span><span class="s1">&#39;python_eyelinkparser&#39;</span><span class="p">,</span> <span class="s2">&quot;utils/edf2ascii&quot;</span><span class="p">)</span>
+<span class="o">!</span>mkdir data
+<span class="o">!</span>wget -O data/awm.edf https://github.com/smathot/pupillometry_review/blob/master/data/auditory%20working%20memory/data/awm.edf?raw<span class="o">=</span>true
+<span class="o">!{</span>edf2asc_path<span class="o">}</span> data/awm.edf -Y
+<span class="o">!</span>rm data/awm.edf 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: setuptools in /home/ubuntu/projects/eye-processing/.venv/lib/python3.10/site-packages (63.4.2)
+Collecting git+https://github.com/maciejskorski/python-eyelinkparser.git
+  Cloning https://github.com/maciejskorski/python-eyelinkparser.git to /tmp/pip-req-build-ilp9dn_6
+  Running command git clone --filter=blob:none --quiet https://github.com/maciejskorski/python-eyelinkparser.git /tmp/pip-req-build-ilp9dn_6
+  Resolved https://github.com/maciejskorski/python-eyelinkparser.git to commit b0829b7a4d9a0d294f982516ec1143a88a8670db
+  Installing build dependencies ... ?25ldone
+?25h  Getting requirements to build wheel ... ?25ldone
+?25h  Installing backend dependencies ... ?25ldone
+?25h  Preparing metadata (pyproject.toml) ... ?25ldone
+?25hRequirement already satisfied: numpy&gt;=1.18 in /home/ubuntu/projects/eye-processing/.venv/lib/python3.10/site-packages (from python-eyelinkparser==0.18.0) (1.23.1)
+Requirement already satisfied: prettytable&gt;=3.0 in /home/ubuntu/projects/eye-processing/.venv/lib/python3.10/site-packages (from python-eyelinkparser==0.18.0) (3.3.0)
+Requirement already satisfied: scipy&gt;=1.7 in /home/ubuntu/projects/eye-processing/.venv/lib/python3.10/site-packages (from python-eyelinkparser==0.18.0) (1.9.0)
+Requirement already satisfied: python-datamatrix&gt;=0.13 in /home/ubuntu/projects/eye-processing/.venv/lib/python3.10/site-packages (from python-eyelinkparser==0.18.0) (0.14.3)
+Requirement already satisfied: fastnumbers&gt;=3.0 in /home/ubuntu/projects/eye-processing/.venv/lib/python3.10/site-packages (from python-eyelinkparser==0.18.0) (3.2.1)
+Requirement already satisfied: wcwidth in /home/ubuntu/projects/eye-processing/.venv/lib/python3.10/site-packages (from prettytable&gt;=3.0-&gt;python-eyelinkparser==0.18.0) (0.2.5)
+--2022-08-07 20:14:08--  https://github.com/smathot/pupillometry_review/blob/master/data/auditory%20working%20memory/data/awm.edf?raw=true
+Resolving github.com (github.com)... 140.82.121.4
+Connecting to github.com (github.com)|140.82.121.4|:443... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: https://github.com/smathot/pupillometry_review/raw/master/data/auditory%20working%20memory/data/awm.edf [following]
+--2022-08-07 20:14:08--  https://github.com/smathot/pupillometry_review/raw/master/data/auditory%20working%20memory/data/awm.edf
+Reusing existing connection to github.com:443.
+HTTP request sent, awaiting response... 302 Found
+Location: https://raw.githubusercontent.com/smathot/pupillometry_review/master/data/auditory%20working%20memory/data/awm.edf [following]
+--2022-08-07 20:14:08--  https://raw.githubusercontent.com/smathot/pupillometry_review/master/data/auditory%20working%20memory/data/awm.edf
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.110.133, 185.199.111.133, 185.199.108.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.110.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 17685109 (17M) [application/octet-stream]
+Saving to: ‘data/awm.edf’
+
+data/awm.edf        100%[===================&gt;]  16.87M  21.5MB/s    in 0.8s    
+
+2022-08-07 20:14:10 (21.5 MB/s) - ‘data/awm.edf’ saved [17685109/17685109]
+
+
+EDF2ASC: EyeLink EDF file -&gt; ASCII (text) file translator
+EDF2ASC version 4.2.1.0 Linux   standalone Jun 18 2021 
+(c)1995-2021 by SR Research, last modified Jun 18 2021
+
+processing file data/awm.edf 
+loadEvents = 1
+=========================Preamble of file data/awm.edf=========================
+| DATE: Wed Jan 24 05:57:43 2018                                              |
+| TYPE: EDF_FILE BINARY EVENT SAMPLE TAGGED                                   |
+| VERSION: EYELINK II 1                                                       |
+| SOURCE: EYELINK CL                                                          |
+| EYELINK II CL v4.56 Aug 18 2010                                             |
+| CAMERA: EyeLink CL Version 1.4 Sensor=BGE                                   |
+| SERIAL NUMBER: CL1-ABE24                                                    |
+| CAMERA_CONFIG: ABE24140.SCD                                                 |
+===============================================================================
+
+Converted successfully: 15156 events, 1114647 samples, 75 blocks.
+rm: cannot remove &#39;awm.edf&#39;: No such file or directory
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="parse-into-tabular-format">
+<h2>Parse into Tabular Format<a class="headerlink" href="#parse-into-tabular-format" title="Permalink to this headline">#</a></h2>
+<p>The converted data comes in the <code class="docutils literal notranslate"><span class="pre">asc</span></code> format which is essentially semi-structured text.</p>
+<p>To parse it, we use the package functions: interpolation for blinks is enabled, and the recording is downsampled by the factor of 10, from 1000 to 100Hz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datamatrix</span> <span class="kn">import</span> <span class="p">(</span>
+  <span class="n">operations</span> <span class="k">as</span> <span class="n">ops</span><span class="p">,</span>
+  <span class="n">functional</span> <span class="k">as</span> <span class="n">fnc</span><span class="p">,</span>
+  <span class="n">series</span> <span class="k">as</span> <span class="n">srs</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">python_eyelinkparser.eyelinkparser</span> <span class="kn">import</span> <span class="n">parse</span><span class="p">,</span> <span class="n">defaulttraceprocessor</span>
+
+<span class="k">def</span> <span class="nf">get_data</span><span class="p">():</span>
+
+    <span class="c1"># The heavy lifting is done by eyelinkparser.parse()</span>
+    <span class="n">dm</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span>
+        <span class="n">folder</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span>           <span class="c1"># Folder with .asc files </span>
+        <span class="n">traceprocessor</span><span class="o">=</span><span class="n">defaulttraceprocessor</span><span class="p">(</span>
+          <span class="n">blinkreconstruct</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1"># Interpolate pupil size during blinks</span>
+          <span class="n">downsample</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>         <span class="c1"># Reduce sampling rate to 100 Hz,</span>
+          <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;advanced&#39;</span>        <span class="c1"># Use the new &#39;advanced&#39; algorithm</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+    <span class="c1"># To save memory, we keep only a subset of relevant columns.</span>
+    <span class="n">dm</span> <span class="o">=</span> <span class="n">dm</span><span class="p">[</span><span class="n">dm</span><span class="o">.</span><span class="n">set_size</span><span class="p">,</span> <span class="n">dm</span><span class="o">.</span><span class="n">correct</span><span class="p">,</span> <span class="n">dm</span><span class="o">.</span><span class="n">ptrace_sounds</span><span class="p">,</span> <span class="n">dm</span><span class="o">.</span><span class="n">ptrace_retention</span><span class="p">,</span> 
+            <span class="n">dm</span><span class="o">.</span><span class="n">fixxlist_retention</span><span class="p">,</span> <span class="n">dm</span><span class="o">.</span><span class="n">fixylist_retention</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">dm</span>
+
+<span class="n">dm</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>..
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/ubuntu/projects/eye-processing/.venv/lib/python3.10/site-packages/python_eyelinkparser/eyelinkparser/_events.py:166: UserWarning: Unexpected exception during parsing of list index out of range
+  warnings.warn(
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.........
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/ubuntu/projects/eye-processing/.venv/lib/python3.10/site-packages/datamatrix/series.py:1476: RuntimeWarning: Mean of empty slice
+  return fnc(a.reshape(-1, by), axis=1)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>................................................................
+EDF2ASC: EyeLink EDF file -&gt; ASCII (text) file translator
+EDF2ASC version 4.2.1.0 Linux   standalone Jun 18 2021 
+(c)1995-2021 by SR Research, last modified Jun 18 2021
+
+processing file data/awm.edf 
+loadEvents = 1
+=========================Preamble of file data/awm.edf=========================
+| DATE: Wed Jan 24 05:57:43 2018                                              |
+| TYPE: EDF_FILE BINARY EVENT SAMPLE TAGGED                                   |
+| VERSION: EYELINK II 1                                                       |
+| SOURCE: EYELINK CL                                                          |
+| EYELINK II CL v4.56 Aug 18 2010                                             |
+| CAMERA: EyeLink CL Version 1.4 Sensor=BGE                                   |
+| SERIAL NUMBER: CL1-ABE24                                                    |
+| CAMERA_CONFIG: ABE24140.SCD                                                 |
+===============================================================================
+
+Converted successfully: 15156 events, 1114647 samples, 75 blocks.
+/tmp/tmpawm.edf.asc
+..
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/ubuntu/projects/eye-processing/.venv/lib/python3.10/site-packages/python_eyelinkparser/eyelinkparser/_events.py:166: UserWarning: Unexpected exception during parsing of list index out of range
+  warnings.warn(
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.........
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/ubuntu/projects/eye-processing/.venv/lib/python3.10/site-packages/datamatrix/series.py:1476: RuntimeWarning: Mean of empty slice
+  return fnc(a.reshape(-1, by), axis=1)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>................................................................+----+---------+---------------------------+---------------------------+-----------------------------------+-----------------------------------+----------+
+| #  | correct |     fixxlist_retention    |     fixylist_retention    |          ptrace_retention         |           ptrace_sounds           | set_size |
++----+---------+---------------------------+---------------------------+-----------------------------------+-----------------------------------+----------+
+| 0  |    1    | [525.9 527.1 ... nan nan] | [382.9 380.4 ... nan nan] | [1810.  1810.3 ... 1902.9 1908.2] |    [1655.6 1657.1 ... nan nan]    |    5     |
+| 1  |    1    | [528.9 526.8 ... nan nan] | [386.4 387.5 ... nan nan] | [1644.6 1648.7 ... 1675.4 1673.4] |    [1717.3 1718.5 ... nan nan]    |    3     |
+| 2  |    1    | [521.4 524.2 ... nan nan] | [377.3 371.4 ... nan nan] | [1787.  1791.4 ... 1719.9 1719.3] | [1471.8 1470.4 ... 1783.2 1785.3] |    7     |
+| 3  |    1    | [523.2 520.7 ... nan nan] | [382.6 390.7 ... nan nan] | [1773.5 1774.8 ... 1755.7 1752.5] |    [1857.7 1859.1 ... nan nan]    |    3     |
+| 4  |    1    | [522.1 530.1 ... nan nan] | [373.5 378.1 ... nan nan] | [1939.2 1939.6 ... 1801.3 1802.7] | [1847.2 1849.6 ... 1940.  1938.7] |    7     |
+| 5  |    1    | [521.  515.6 ... nan nan] | [379.1 386.  ... nan nan] | [1867.4 1867.9 ... 1765.6 1768.4] | [1615.9 1619.3 ... 1872.6 1870.6] |    7     |
+| 6  |    1    | [520.8 524.2 ... nan nan] | [387.5 380.  ... nan nan] | [1675.2 1674.1 ... 1585.  1581.4] |    [1826.5 1821.8 ... nan nan]    |    5     |
+| 7  |    1    | [527.5 531.6 ... nan nan] | [396.  400.9 ... nan nan] | [1766.5 1766.7 ... 1685.7 1682.2] |    [1728.6 1726.7 ... nan nan]    |    3     |
+| 8  |    1    | [518.4 523.  ... nan nan] | [391.8 391.1 ... nan nan] | [1733.3 1736.7 ... 1733.2 1730.2] | [1636.  1637.6 ... 1730.3 1729.3] |    7     |
+| 9  |    0    | [528.2 523.1 ... nan nan] | [382.7 386.4 ... nan nan] | [1692.  1692.8 ... 1655.5    nan] | [1533.  1534.5 ... 1688.  1693.6] |    7     |
+| 10 |    1    | [528.4 534.3 ... nan nan] | [388.3 384.  ... nan nan] | [1602.2 1601.3 ... 1574.1 1575.9] | [1789.2 1793.1 ... 1599.6 1602.1] |    7     |
+| 11 |    0    | [525.  523.6 ... nan nan] | [386.7 390.2 ... nan nan] | [1742.5 1740.1 ... 1567.1 1559.5] | [1696.8 1700.6 ... 1747.5 1746.8] |    7     |
+| 12 |    1    | [503.1 505.1 ... nan nan] | [376.2 377.4 ... nan nan] | [1668.9 1668.8 ... 1556.1    nan] |    [1667.6 1667.6 ... nan nan]    |    5     |
+| 13 |    1    | [517.2 508.3 ... nan nan] | [387.1 384.7 ... nan nan] | [1609.5 1602.3 ... 1590.9 1584.3] | [1479.8 1477.9 ... 1614.1 1609.2] |    7     |
+| 14 |    1    | [507.6 505.3 ... nan nan] | [388.4 386.5 ... nan nan] | [1475.4 1473.7 ... 1484.6 1490.7] |    [1481.9 1477.6 ... nan nan]    |    3     |
+| 15 |    1    | [508.6 507.2 ... nan nan] |  [387. 389. ... nan nan]  | [1494.8 1494.2 ... 1522.9 1522.1] | [1522.4 1518.7 ... 1496.1 1495.4] |    7     |
+| 16 |    1    | [498.6 510.1 ... nan nan] | [386.1 399.2 ... nan nan] | [1550.4 1550.3 ... 1390.8 1385.9] |    [1651.6 1649.1 ... nan nan]    |    3     |
+| 17 |    1    | [510.2 508.1 ... nan nan] | [387.  382.6 ... nan nan] | [1557.6 1559.  ... 1532.2 1532. ] |    [1537.8 1534.  ... nan nan]    |    3     |
+| 18 |    1    | [521.7 519.8 ... nan nan] | [382.8 385.4 ... nan nan] | [1523.1 1521.9 ... 1409.5 1409.6] |    [1471.8 1472.6 ... nan nan]    |    5     |
+| 19 |    1    | [517.4 518.2 ... nan nan] | [386.5 384.5 ... nan nan] | [1500.1 1502.  ... 1500.5 1498.4] |    [1530.4 1531.  ... nan nan]    |    5     |
++----+---------+---------------------------+---------------------------+-----------------------------------+-----------------------------------+----------+
+(+ 130 rows not shown)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualize">
+<h2>Visualize<a class="headerlink" href="#visualize" title="Permalink to this headline">#</a></h2>
+<p>The baseline correction is applied, with first 2 samples as the baseline. The time is clipped at 1200 which corresponds to 12s (1000Hz in the original recording was downsampled 10x).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dm</span><span class="o">.</span><span class="n">pupil</span> <span class="o">=</span> <span class="n">srs</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+    <span class="n">srs</span><span class="o">.</span><span class="n">endlock</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">ptrace_sounds</span><span class="p">),</span>
+    <span class="n">dm</span><span class="o">.</span><span class="n">ptrace_retention</span>
+<span class="p">)</span>
+<span class="n">dm</span><span class="o">.</span><span class="n">pupil</span> <span class="o">=</span> <span class="n">srs</span><span class="o">.</span><span class="n">baseline</span><span class="p">(</span>
+    <span class="n">series</span><span class="o">=</span><span class="n">dm</span><span class="o">.</span><span class="n">pupil</span><span class="p">,</span>
+    <span class="n">baseline</span><span class="o">=</span><span class="n">dm</span><span class="o">.</span><span class="n">ptrace_sounds</span><span class="p">,</span>
+    <span class="n">bl_start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">bl_end</span><span class="o">=</span><span class="mi">2</span>
+<span class="p">)</span>
+<span class="n">dm</span><span class="o">.</span><span class="n">pupil</span><span class="o">.</span><span class="n">depth</span> <span class="o">=</span> <span class="mi">1200</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="k">def</span> <span class="nf">plot_series</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+
+    <span class="n">se</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">std</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">mean</span><span class="o">-</span><span class="n">se</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">mean</span><span class="o">+</span><span class="n">se</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.25</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1200</span><span class="p">)</span>
+<span class="n">dm3</span><span class="p">,</span> <span class="n">dm5</span><span class="p">,</span> <span class="n">dm7</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">set_size</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plot_series</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dm3</span><span class="o">.</span><span class="n">pupil</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;3 (N=</span><span class="si">%d</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">dm3</span><span class="p">))</span>
+<span class="n">plot_series</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dm5</span><span class="o">.</span><span class="n">pupil</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;5 (N=</span><span class="si">%d</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">dm5</span><span class="p">))</span>
+<span class="n">plot_series</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dm7</span><span class="o">.</span><span class="n">pupil</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;7 (N=</span><span class="si">%d</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">dm7</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Pupil size (norm)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time relative to onset retention interval (s)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Memory load&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/ubuntu/projects/eye-processing/.venv/lib/python3.10/site-packages/numpy/lib/nanfunctions.py:1878: RuntimeWarning: Degrees of freedom &lt;= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/home/ubuntu/projects/eye-processing/.venv/lib/python3.10/site-packages/datamatrix/_datamatrix/_seriescolumn.py:130: RuntimeWarning: Mean of empty slice
+  return nanmean(self._seq, axis=0)
+</pre></div>
+</div>
+<img alt="../_images/70367a12c012faa636f27ab4f295a232b60adb3e07adf7fa1408fdbf7f68f172.png" src="../_images/70367a12c012faa636f27ab4f295a232b60adb3e07adf7fa1408fdbf7f68f172.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="references">
+<h1>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h1>
+<div class="docutils container" id="id3">
+<dl class="citation">
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id2">KB66</a></span></dt>
+<dd><p>Daniel Kahneman and Jackson Beatty. Pupil Diameter and Load on Memory. <em>Science</em>, 154(3756):1583–1585, December 1966. URL: <a class="reference external" href="https://www.science.org/doi/10.1126/science.154.3756.1583">https://www.science.org/doi/10.1126/science.154.3756.1583</a> (visited on 2022-08-07), <a class="reference external" href="https://doi.org/10.1126/science.154.3756.1583">doi:10.1126/science.154.3756.1583</a>.</p>
+</dd>
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id1">Mat18</a></span></dt>
+<dd><p>Sebastiaan Mathôt. Pupillometry: Psychology, Physiology, and Function. <em>Journal of Cognition</em>, 1(1):16, February 2018. URL: <a class="reference external" href="http://www.journalofcognition.org/articles/10.5334/joc.18/">http://www.journalofcognition.org/articles/10.5334/joc.18/</a> (visited on 2022-07-30), <a class="reference external" href="https://doi.org/10.5334/joc.18">doi:10.5334/joc.18</a>.</p>
+</dd>
+<dt class="label" id="id4"><span class="brackets">MV22</span></dt>
+<dd><p>Sebastiaan Mathôt and Ana Vilotijević. Methods in Cognitive Pupillometry: Design, Preprocessing, and Statistical Analysis. preprint, Animal Behavior and Cognition, February 2022. URL: <a class="reference external" href="http://biorxiv.org/lookup/doi/10.1101/2022.02.23.481628">http://biorxiv.org/lookup/doi/10.1101/2022.02.23.481628</a> (visited on 2022-07-12), <a class="reference external" href="https://doi.org/10.1101/2022.02.23.481628">doi:10.1101/2022.02.23.481628</a>.</p>
+</dd>
+</dl>
+</div>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">About</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../license.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">License</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Maciej Skorski<br/>
+  
+      &copy; Copyright 2022, Maciej Skorski.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
